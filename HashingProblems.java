@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** Davide Mazzucco / 001 ***
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -33,15 +33,23 @@ class HashingProblems {
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
+        double sum = 0;
+        int count = 0;
 
-         return 0.0 / 0.0;
+        //move through the array
+        for (int key : array) {
+            if (map.containsKey(key)) {// check if map contains each key in the array
+                sum += map.get(key);  //add the value at the key to the sum
+                count++;  //add to the number of keys found
+            }
+        }
+
+        //if no key match return nothing
+        if (count == 0) {
+            return Double.NaN;
+        }
+
+        return sum / count;//return average
   }
 
 
@@ -53,17 +61,17 @@ class HashingProblems {
      */
 
   public ArrayList<String> odd(HashMap<Integer, String> map) {
-    
-      ArrayList<String> result = new ArrayList<>();
 
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
+      ArrayList<String> list = new ArrayList<>();
 
+      //Iterate thorugh the map keys
+      for (Integer key : map.keySet()) {
+          if (key % 2 != 0) {  //check if key is odd
+              list.add(map.get(key));//add key value to the returned list
+          }
+      }
 
-      return result;
+      return list;
   }
 
 
@@ -105,12 +113,25 @@ class HashingProblems {
    */
 
   public int twoSums(int[] numbers, int k) {
+      HashSet<Integer> set = new HashSet<>();
+      int count = 0;
 
-      /*
-       * ADD YOUR CODE HERE
-       */
+      //iterate over the numbers and add them to the set while checking the condition
+      for (int num : numbers) {
+          set.add(num);//add current number to set
 
-      return -1;
+          if (set.contains(num - k)) {
+              count++;//if (num - k) is in the set, increase count
+          }
+
+          if (set.contains(num + k)) {
+              count++;//if (num + k) is in the set it also counts so increase the count again
+          }
+
+
+      }
+
+      return count;
   }
 
 } /* end class HashingProblems */
